@@ -41,6 +41,7 @@
         "loopback.h": "c",
         "w6x00_spi.h": "c",
         "wizchip_conf.h": "c",
-        "port_common.h": "c"
+        "port_common.h": "c",
+        "dhcpv6.h": "c"
     }
 }
