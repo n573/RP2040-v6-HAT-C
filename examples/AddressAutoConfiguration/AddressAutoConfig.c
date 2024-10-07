@@ -31,6 +31,7 @@
 //*****************************************************************************
 
 #include "AddressAutoConfig.h"
+#include <string.h>
 
 #define MY_MAX_DHCP_RETRY 3
 
@@ -59,7 +60,7 @@ uint8_t AddressAutoConfig_Init(wiz_NetInfo *netinfo)
 	printf("Duplicate_Address_Detection\r\n");
 	Duplicate_Address_Detection(netinfo);
 	ctlnetwork(CN_SET_NETINFO, netinfo);
-	print_network_information();
+	print_network_information(netinfo);
 
 	// RSRA
 	printf("Address_Auto_Configuration Start\r\n");

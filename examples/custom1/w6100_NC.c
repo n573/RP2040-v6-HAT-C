@@ -116,7 +116,6 @@ static wiz_NetInfo g_net_info =
                 0x76, 0xfe, 0xce, 0xff,
                 0xfe, 0x37, 0x46, 0x10},            // DNS6 server -- ! Trying same as gateway for error check
         .ipmode = NETINFO_STATIC_ALL
-        // .ipmode = NETINFO_STATIC_V4 // Modified from "all" to "v4"
 };
 /*
 * Note -- dest IP is independet of WizNet device. It references the target computer/device. 
