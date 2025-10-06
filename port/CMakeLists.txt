@@ -10,6 +10,7 @@ target_include_directories(IOLIBRARY_FILES PUBLIC
         ${WIZNET_DIR}/Ethernet
         ${PORT_DIR}/io6Library/inc
         ${PORT_DIR}
+        ${INCLUDE_DIR}
         )
 
 target_link_libraries(IOLIBRARY_FILES PRIVATE
@@ -17,6 +18,7 @@ target_link_libraries(IOLIBRARY_FILES PRIVATE
         hardware_spi
         hardware_dma
         hardware_clocks
+        NC_SRC
         )
 
 # timer
