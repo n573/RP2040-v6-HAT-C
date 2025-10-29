@@ -18,7 +18,8 @@ target_link_libraries(IOLIBRARY_FILES PRIVATE
         hardware_spi
         hardware_dma
         hardware_clocks
-        #NC_SRC
+        NC_SRC          # Uncommented after successful build
+                        # Needed for B-Series_Template
         )
 
 # timer
