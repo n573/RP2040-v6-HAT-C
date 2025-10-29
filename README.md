@@ -11,6 +11,10 @@
 <a name="overview"></a>
 ## Overview
 
+!!! This is not a public fork. Please do not use. !!!
+This is a fork of the WizNet RP2040-v6-HAT-C repository. 
+This is being used for a specific application, **only used for saving my own work and version tracking**. 
+
 The RP2040 & W6x00 ethernet examples use **W6100-EVB-Pico** - ethernet I/O module built on [**RP2040**][link-rp2040] and WIZnet's [**W6100**][link-w6100] ethernet chip.
 
 - [**W6100-EVB-Pico**][link-w6100-evb-pico]

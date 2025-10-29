@@ -61,3 +61,16 @@ if(EXISTS "${PICO_SDK_TINYUSB_SRC_DIR}/.git")
 endif()
 
 execute_process(COMMAND ${GIT_EXECUTABLE} -C ${PICO_SDK_SRC_DIR} submodule update --init)
+
+# Fix case-sensitive include issues in io6Library after submodule reset
+# On Linux, dhcpv6.h incorrectly includes "W6100.h" (uppercase) while the file is "w6100.h" (lowercase).
+# Since this file may be reset during configure by the clean/reset above, patch it here deterministically.
+set(DHCP6_HEADER_PATH "${IO6LIBRARY_SRC_DIR}/Internet/DHCP6/dhcpv6.h")
+if(EXISTS "${DHCP6_HEADER_PATH}")
+	file(READ "${DHCP6_HEADER_PATH}" DHCP6_HEADER_CONTENT)
+	string(REPLACE "#include \"W6100.h\"" "#include \"w6100.h\"" DHCP6_HEADER_CONTENT_FIXED "${DHCP6_HEADER_CONTENT}")
+	if(NOT DHCP6_HEADER_CONTENT STREQUAL DHCP6_HEADER_CONTENT_FIXED)
+		message(STATUS "Patching dhcpv6.h include to use lowercase w6100.h")
+		file(WRITE "${DHCP6_HEADER_PATH}" "${DHCP6_HEADER_CONTENT_FIXED}")
+	endif()
+endif()

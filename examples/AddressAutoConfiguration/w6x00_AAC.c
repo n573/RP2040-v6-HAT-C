@@ -85,44 +85,54 @@
 /* Network */
 static wiz_NetInfo g_net_info =
     {
-        .mac = {0x00, 0x08, 0xDC, 0x12, 0x34, 0x56}, // MAC address
-        .ip = {192, 168, 11, 2},                     // IP address
+        .mac = {0x00, 0x08, 0xDC, 0x12, 0x34, 0x56}, // MAC address = 00:08:DC:12:34:56 -- MAC associated w/ this WizNet ip (next line)
+        .ip = {192, 168, 0, 99},                     // IP address = 192.168.0.99 -- reserved on router!
         .sn = {255, 255, 255, 0},                    // Subnet Mask
-        .gw = {192, 168, 11, 1},                     // Gateway
-        .dns = {8, 8, 8, 8},                         // DNS server
+        .gw = {192, 168, 0, 1},                     // Gateway
+        // .dns = {208, 69, 40, 3},                        // DNS server = 208.69.40.3 -- obtained from router page
+        .dns = {192, 168, 0, 1},                        // DNS server = 192.168.0.1 -- obtained from WizNet serial console
         .lla = {0xfe, 0x80, 0x00, 0x00,
                 0x00, 0x00, 0x00, 0x00,
-                0x02, 0x08, 0xdc, 0xff,
-                0xfe, 0x57, 0x57, 0x25},             // Link Local Address
+                0x23, 0x40, 0xb9, 0x25,
+                0x35, 0x07, 0xfa, 0x94},             // Link Local Address = fe80::2340:b925:3507:fa94%15
         .gua = {0x00, 0x00, 0x00, 0x00,
                 0x00, 0x00, 0x00, 0x00,
                 0x00, 0x00, 0x00, 0x00,
-                0x00, 0x00, 0x00, 0x00},             // Global Unicast Address
-        .sn6 = {0xff, 0xff, 0xff, 0xff,
-                0xff, 0xff, 0xff, 0xff,
+                0x00, 0x00, 0x00, 0x00},             // Global Unicast Address !! UNKNOWN !!
+        .sn6 = {0x26, 0x07, 0xf5, 0x98,
+                0xf4, 0x08, 0x2a, 0x00,
                 0x00, 0x00, 0x00, 0x00,
-                0x00, 0x00, 0x00, 0x00},             // IPv6 Prefix
-        .gw6 = {0x00, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00},             // IPv6 Prefix = first half of Gateway IPv6 followed by zeroes.  
+        .gw6 = {0x26, 0x07, 0xf5, 0x98,
+                0xf4, 0x08, 0x2a, 0x00,
+                0x76, 0xfe, 0xce, 0xff,
+                0xfe, 0x37, 0x46, 0x10},             // Gateway IPv6 Address = 2607:F598:F408:2A00:76FE:CEFF:FE37:4610/64
+                /*
+        .dns6 = {0x26, 0x07, 0xf5, 0x98,
+                0x00, 0x00, 0x11, 0x11,
                 0x00, 0x00, 0x00, 0x00,
-                0x00, 0x00, 0x00, 0x00,
-                0x00, 0x00, 0x00, 0x00},             // Gateway IPv6 Address
-        .dns6 = {0x20, 0x01, 0x48, 0x60,
-                0x48, 0x60, 0x00, 0x00,
-                0x00, 0x00, 0x00, 0x00,
-                0x00, 0x00, 0x88, 0x88},             // DNS6 server
-        .ipmode = 0
+                0x00, 0x00, 0x00, 0x03},             // DNS6 server = 2607:F598:0:1::3 -- !!! WizNet console claims this is 0::0
+                */
+        .dns6 = {0x26, 0x07, 0xf5, 0x98,
+                0xf4, 0x08, 0x2a, 0x00,
+                0x76, 0xfe, 0xce, 0xff,
+                0xfe, 0x37, 0x46, 0x10},            // DNS6 server -- ! Trying same as gateway for error check
+        .ipmode = NETINFO_STATIC_ALL 
+};
+/*
+* Note -- dest IP is independet of WizNet device. It references the target computer/device. 
+*/
+uint8_t tcp_client_destip[] = { //192.168.0.223
+    192, 168, 0, 223 // ip of target PC (this pc via Eth.)
 };
 
-uint8_t tcp_client_destip[] = {
-    192, 168, 50, 103
+uint8_t tcp_client_destip6[] = { //2607:f598:f408:2a00:1b34:6b42:f435:fb44
+    0x26, 0x07, 0xf5, 0x98,
+    0xf4, 0x08, 0x2a, 0x00, 
+    0x1b, 0x34, 0x6b, 0x42,
+    0xf4, 0x35, 0xfb, 0x44
 };
 
-uint8_t tcp_client_destip6[] = {
-    0x20, 0x01, 0x02, 0xb8,
-    0x00, 0x10, 0xff, 0xff,
-    0x71, 0x48, 0xcb, 0x27,
-    0x36, 0xb9, 0x99, 0x2e
-};
 
 uint16_t tcp_client_destport = PORT_TCP_CLIENT_DEST;
 
