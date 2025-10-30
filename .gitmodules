@@ -9,5 +9,5 @@
 	url = https://github.com/raspberrypi/pico-extras.git
 [submodule "libraries/io6Library"]
 	path = libraries/io6Library
-	url = https://github.com/Wiznet/io6Library.git
+	url = https://github.com/n573/io6Library.git
 	branch = main-patched
