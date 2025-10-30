@@ -60,7 +60,7 @@ uint8_t AddressAutoConfig_Init(wiz_NetInfo *netinfo)
 	printf("Duplicate_Address_Detection\r\n");
 	Duplicate_Address_Detection(netinfo);
 	ctlnetwork(CN_SET_NETINFO, netinfo);
-	#ifdef WIZNET_DIR
+	#ifdef BSERIES_EN
 	print_network_information(netinfo);
 	#endif
 
@@ -68,7 +68,7 @@ uint8_t AddressAutoConfig_Init(wiz_NetInfo *netinfo)
 	printf("Address_Auto_Configuration Start\r\n");
 	MO_flag = Address_Auto_Config_RA(7, data_buf, sizeof(data_buf), netinfo);
 	ctlnetwork(CN_SET_NETINFO, netinfo);
-	#ifdef WIZNET_DIR
+	#ifdef BSERIES_EN
 	print_network_information(netinfo);
 	#endif
 
@@ -100,7 +100,7 @@ uint8_t AddressAutoConfig_Init(wiz_NetInfo *netinfo)
 
 		memcpy(&netinfo->dns6, DNS6_Address, sizeof(DNS6_Address));
 		ctlnetwork(CN_SET_NETINFO, netinfo);
-		#ifdef WIZNET_DIR
+		#ifdef BSERIES_EN
 		print_network_information(netinfo);
 		#endif
 	}
@@ -124,7 +124,7 @@ uint8_t AddressAutoConfig_Init(wiz_NetInfo *netinfo)
 		}
 
 		ctlnetwork(CN_SET_NETINFO, netinfo);
-		#ifdef WIZNET_DIR
+		#ifdef BSERIES_EN
 		print_network_information(netinfo);
 		#endif
 	}

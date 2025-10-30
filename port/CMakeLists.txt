@@ -18,7 +18,8 @@ target_link_libraries(IOLIBRARY_FILES PRIVATE
         hardware_spi
         hardware_dma
         hardware_clocks
-        NC_SRC          # Uncommented after successful build
+        $<$<BOOL:${BSERIES_EN}>:NC_SRC>  # Only link NC_SRC when enabled
+                        # Uncommented after successful build
                         # Needed for B-Series_Template
         )
 

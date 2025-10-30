@@ -82,6 +82,11 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/libraries)
 add_subdirectory(${MBEDTLS_DIR})
 add_subdirectory(${PORT_DIR})
 
+
+# Toggle Wiznet-dependent code across the whole tree.
+# Uncomment to enable; keep commented to disable.
+# add_compile_definitions(BSERIES_EN=1)
+
 # Set compile options
 add_compile_options(
         -Wall
