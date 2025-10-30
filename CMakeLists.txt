@@ -83,7 +83,7 @@ add_subdirectory(${MBEDTLS_DIR})
 add_subdirectory(${PORT_DIR})
 
 
-# Toggle Wiznet-dependent code across the whole tree.
+# Toggle BSeries-dependent code across the whole tree.
 # Uncomment to enable; keep commented to disable.
 # add_compile_definitions(BSERIES_EN=1)
 
